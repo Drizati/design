@@ -1,3 +1,4 @@
+import 'package:design/widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
@@ -8,12 +9,15 @@ class DesignUI extends StatelessWidget {
   Widget build(BuildContext context) => Storybook(
         children: [
           Story.simple(
-            name: 'Input field',
-            child: const TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Input field',
-              ),
+            name: 'Text Field',
+            child: DUITextField(
+              color: Colors.indigo,
+              icon: Icons.lock,
+              placeholder: "Password",
+              validator: (value, error, success, message) {
+                if (value != null && value.length < 6)
+                  return "password too short";
+              },
             ),
           ),
           Story(
